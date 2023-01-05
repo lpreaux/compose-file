@@ -36,7 +36,7 @@ services:
       dbs:
       lofgplv.fr:
     environment:
-      - MYSQL_PASSWORD=Franca-Nan-jed-Porto-7repayment-Glide9
+      - MYSQL_PASSWORD= <MDP>
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
       - MYSQL_HOST=mysql-maria-10-1
