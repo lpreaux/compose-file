@@ -1,6 +1,8 @@
 # Nextcloud
 
-Config for my config of Nextcloud
+[Official Site](https://nextcloud.com/)
+
+Config of my Nextcloud instance
 
 ## nextcloud.yml
 
