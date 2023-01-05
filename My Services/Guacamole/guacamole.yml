@@ -2,7 +2,6 @@ version: '3.0'
 
 networks:
   local:
-    name: guac-local
     external: false
   lofgplv.fr:
     name: lofgplv.fr
