@@ -1,0 +1,35 @@
+version: '3'
+
+volumes:
+  data:
+  letsencrypt:
+
+networks:
+  local:
+    external: false
+  dbs:
+    name: mysql_dbs
+    external: true
+  lofgplv.fr:
+    name: lofgplv.fr
+    external: true
+
+services:
+  app:
+    image: jc21/nginx-proxy-manager:latest
+    restart: unless-stopped
+    ports:
+      - 443:443
+    environment:
+      DB_MYSQL_HOST: "mysql-maria-10-1"
+      DB_MYSQL_PORT: 3306
+      DB_MYSQL_USER: "nginxproxymanager"
+      DB_MYSQL_PASSWORD: "<MDP>"
+      DB_MYSQL_NAME: "npm"
+    volumes:
+      - data:/data
+      - letsencrypt:/etc/letsencrypt
+    networks:
+      local:
+      dbs:
+      lofgplv.fr:
