@@ -4,9 +4,8 @@ Collection of compose file for a quick-setup mariadb environment.
 
 By default :
 
-    user: root
-
-    no password
+> `user: root`  
+> no password
 
 
 Case sensitivity : lower_case_table_names set to 1, names are stored in lowercase and not compared in a case-sensitive
