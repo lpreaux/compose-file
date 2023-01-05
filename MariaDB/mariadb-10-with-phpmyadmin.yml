@@ -1,0 +1,25 @@
+version: "3"
+
+name: mariadb
+
+services:
+  "10":
+    image: mariadb:10
+    ports:
+      - 3306:3306
+    environment:
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: yes
+      MARIADB_ALLOW_EMPTY_PASSWORD: yes
+    command: --lower_case_table_names=1
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    links:
+      - 10:db
+    ports:
+      - 8080:80
+    environment:
+      MYSQL_ROOT_PASSWORD: ""
+      PMA_HOST: db
+      PMA_USER: root

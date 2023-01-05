@@ -1,0 +1,14 @@
+version: "3"
+
+name: mariadb
+
+services:
+  "10":
+    image: mariadb:10
+    ports:
+      - 3306:3306
+    environment:
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: yes
+      MARIADB_ALLOW_EMPTY_PASSWORD: yes
+    command: --lower_case_table_names=1
+
