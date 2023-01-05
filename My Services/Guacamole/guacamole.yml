@@ -1,0 +1,46 @@
+version: '3.0'
+
+networks:
+  local:
+    name: guac-local
+    external: false
+  lofgplv.fr:
+    name: lofgplv.fr
+    external: true
+  db:
+    name: postgres_dbs
+    external: true
+
+volumes:
+  guacd-drive:
+  guacd-record:
+
+services:
+  guacd:
+    image: guacamole/guacd
+    restart: always
+    volumes:
+      - guacd-drive:/drive:rw
+      - guacd-record:/record:rw
+    networks:
+      local:
+
+  guacamole:
+    image: guacamole/guacamole
+    restart: always
+    depends_on:
+      - guacd
+    links:
+      - guacd:guacd
+    networks:
+      local:
+      lofgplv.fr:
+      db:
+    environment:
+      GUACD_HOSTNAME: guacd
+      GUACD_PORT: 4822
+      POSTGRES_DATABASE: guacamole
+      POSTGRES_HOSTNAME: postgres-13-1
+      POSTGRES_PASSWORD: <MDP>
+      POSTGRES_USER: guacamole
+      WEBAPP_CONTEXT: ROOT
