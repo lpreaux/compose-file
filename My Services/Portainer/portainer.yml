@@ -1,0 +1,32 @@
+version: "3"
+
+networks:
+  local:
+    external: false
+  lofgplv.fr:
+    name: lofgplv.fr
+    external: true
+
+volumes:
+  portainer_data:
+
+services:
+  server:
+    image: portainer/portainer-ce:latest
+    restart: always
+    networks:
+      local:
+      lofgplv.fr:
+    volumes:
+      - portainer_data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  agent:
+    image: portainer/agent:latest
+    restart: always
+    networks:
+      local:
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker/volumes:/var/lib/docker/volumes
+      - /home/lucas/tmp:/host
